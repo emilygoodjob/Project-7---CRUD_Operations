@@ -5,38 +5,70 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* App.css */
+.App {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Sidebar {
+  width: 20vw;
+  min-width: 250px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.App-content {
+  transition: margin-left 0.3s ease;
+
+  flex: 1;  /* Takes up the remaining space */
+  width: 80vw;
+  padding: 20px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  padding: 20px;
 }
 
-.card {
-  padding: 2em;
+.Routes {
+  width: 75vw;
 }
 
-.read-the-docs {
-  color: #888;
+/* Ensure that the route components are centered inside the .App-content */
+.route-component {
+  width: 100%; /* Take full width of the container */
+  max-width: 960px; /* Optional: max width for better readability on larger screens */
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.crewmate-card {
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  background-color: white; /* Default background */
+}
+
+.crewmate-card:hover, .crewmate-card.active {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transform: translateY(-5px); /* Slight raise effect */
+  border-color: #646cff; /* Change border color on hover/active */
+}
+
+.crewmate-card.active {
+  background-color: #f0f0f8; /* Light background for the active card */
+}
+
+.content-wrapper {
+  width: 80%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
