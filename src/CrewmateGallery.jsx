@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './index.css'; // Ensure your styles are correctly imported
+import './index.css'; 
 
 function CrewmateGallery({ crewmates, updateCrewmate, deleteCrewmate }) {
     const navigate = useNavigate();
@@ -14,13 +14,13 @@ function CrewmateGallery({ crewmates, updateCrewmate, deleteCrewmate }) {
 
     // Handles navigation to the update page and prevents click event propagation
     const handleUpdate = (event, crewmate) => {
-        event.stopPropagation(); // Prevents the click from triggering the card click handler
+        event.stopPropagation(); 
         navigate('/update-crewmate', { state: { crewmate } });
     };
 
     // Handles deletion of a crewmate and prevents click event propagation
     const handleDelete = (event, id) => {
-        event.stopPropagation(); // Prevents the click from triggering the card click handler
+        event.stopPropagation(); 
         if (typeof deleteCrewmate === 'function') {
             deleteCrewmate(id);
         } else {
@@ -28,11 +28,40 @@ function CrewmateGallery({ crewmates, updateCrewmate, deleteCrewmate }) {
         }
     };
 
+    function calculateAverageSpeed(crewmates) {
+        const totalSpeed = crewmates.reduce((total, crewmate) => total + parseFloat(crewmate.speed || 0), 0);
+        return (crewmates.length > 0 ? (totalSpeed / crewmates.length).toFixed(2) : 0) + " mph";
+    }
+    
+    function findMostCommonColor(crewmates) {
+        const colorFrequency = crewmates.reduce((freq, crewmate) => {
+            if (crewmate.color in freq) {
+                freq[crewmate.color]++;
+            } else {
+                freq[crewmate.color] = 1;
+            }
+            return freq;
+        }, {});
+    
+        let mostCommon = '';
+        let maxCount = 0;
+        for (let color in colorFrequency) {
+            if (colorFrequency[color] > maxCount) {
+                mostCommon = color;
+                maxCount = colorFrequency[color];
+            }
+        }
+        return mostCommon;
+    }    
+
+    const averageSpeed = calculateAverageSpeed(crewmates);
+    const favoriteColor = findMostCommonColor(crewmates);
     return (
         <div className='gallery-container'>
             <h1>Crewmate Gallery</h1>
             <div className='statistics'>
-                {/* Placeholder for statistics - implement if needed */}
+                <p>Average Speed: {averageSpeed}</p>
+                <p>Favorite Color: {favoriteColor}</p>
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
                 {crewmates.map(crewmate => (
