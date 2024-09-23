@@ -1,4 +1,4 @@
-# Web Development Project 7 - *Name of App Here*
+# Web Development Project 7 - *CRUD_Operations*
 
 Submitted by: Emily Gao Wang
 Total time spent: 6 hours
